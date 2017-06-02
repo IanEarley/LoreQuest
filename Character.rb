@@ -52,7 +52,7 @@ class Character
   end
 
   def get_class
-    puts @char_class
+    p @char_class
   end
 
   def base_stats

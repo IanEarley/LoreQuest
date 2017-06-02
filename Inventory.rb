@@ -1,35 +1,24 @@
-# class Inventory
-  class Bag
-    attr_reader :item_name, :item_type
+require_relative 'Character'
 
-    def initialize (item_name, item_type)
-      @item_name = item_name
-      @item_type = item_type
-    end
+class Inventory
+  def initialize(char_class:)
+    @char_class = char_class
+    @bag = starting_bag
+  end
 
-    def ==(other)
-      self.class === other and
-        other.item_name = @item_name and
-        other.item_type = @item_type
-    end
-
-    alias eql? ==
-
-    def bag
-      @item_name.bag ^ @item_type.bag
+  def starting_bag
+    if @char_class == "Warrior"
+      ["Iron Sword", "Iron Plate", "Iron Shield", "Iron Helm", "Iron Greaves", "Iron Gauntlets", "Potion of Healing"]
     end
   end
 
-  # def check_bag
-  #   @bag.each {|item| print "#{item},"}
-  # end
+  def check_bag
+    @bag.each do |item|
+      print "#{item}" + ", "
+    end
+  end
 
-  # def add_to_bag
-  #   @bag.push @item
-  # end
-# end
-
-@bag1 = Bag.new 'Sword', 'A basic blade, used in one hand.'
-
-inventory = {}
-p inventory[@bag1]
+  def add_to_bag
+    @bag << @item
+  end
+end

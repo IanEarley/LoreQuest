@@ -1,3 +1,4 @@
+require 'pry'
 require_relative 'char_name'
 require_relative 'Character' 
 require_relative 'confirm_char' 
@@ -38,10 +39,10 @@ puts "-----Available Classes-----\n
 
 puts "\nI guess I should have asked you this first, but what is your name?\n\n".lines.map { |line| line.strip.center(100) }.join("\n")
 
-char_name
+player_name = CharacterName.new
+player_name.char_name
 
 confirm_char
 
-@inventory = Inventory.new
-@inventory.add_to_bag
+@inventory = Inventory.new(char_class: @player.get_class)
 @inventory.check_bag
