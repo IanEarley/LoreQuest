@@ -39,10 +39,10 @@ puts "-----Available Classes-----\n
 
 puts "\nI guess I should have asked you this first, but what is your name?\n\n".lines.map { |line| line.strip.center(100) }.join("\n")
 
-player_name = CharacterName.new
-player_name.char_name
+@player_name = CharacterName.new
+@player_name.char_name
 
-confirm_char
+confirm = Confirm_character.new(char_name: @player_name.get_name, char_class: @player.get_class, char_race: @player.get_race)
+confirm.confirm_char
 
 @inventory = Inventory.new(char_class: @player.get_class)
-@inventory.check_bag

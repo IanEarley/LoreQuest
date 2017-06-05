@@ -9,6 +9,12 @@ class Inventory
   def starting_bag
     if @char_class == "Warrior"
       ["Iron Sword", "Iron Plate", "Iron Shield", "Iron Helm", "Iron Greaves", "Iron Gauntlets", "Potion of Healing"]
+    elsif @char_class == "Rogue"
+      ["Iron Dagger", "Leather Armor", "Leather Greaves", "Leather Bracers", "Thieve's Tools"]
+    elsif @char_class == "Wizard"
+      ["Quarterstaff", "Cloth Robes", "Cloth Hat", "Cloth Shoes", "Spellbook", "Potion of Mana"]
+    else
+      ["Iron Mace", "Wooden Shield", "Chainmail", "Chain Helm", "Iron Gauntlets", "Iron Greaves", "Holy Symbol"]
     end
   end
 

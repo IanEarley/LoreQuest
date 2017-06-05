@@ -25,7 +25,7 @@ class Character
   end
 
   def get_race
-    puts @char_race
+    @char_race
   end
 
   def class_select
@@ -52,7 +52,7 @@ class Character
   end
 
   def get_class
-    p @char_class
+    @char_class
   end
 
   def base_stats
