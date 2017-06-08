@@ -4,6 +4,8 @@ require_relative 'Character'
 require_relative 'confirm_char' 
 require_relative 'press_enter'
 require_relative 'Inventory'
+require_relative 'Wallet'
+require_relative 'Home_Town'
 
 
 puts "\nWelcome to (tba), a land of magic and monsters to be sure, but it is also a land of heroes and legends. One such legend has yet to be told... yours..."
@@ -19,9 +21,9 @@ puts "-----Available Races-----\n
   Dwarf: A stout race that made their homes within the mountains of (TBA), they are a hearty and strong folk.\n
   Halfling: A small people that boast strong communities throughout the grasslands of (TBA), they are a clever and trustworthy people.\n\n".lines.map { |line| line.strip.center(100) }.join("\n")
 
-@player = Character.new
-@player.race_select
-@player.race_choice
+$player = Character.new
+$player.race_select
+$player.race_choice
 
 
 puts "\nSecond, what is your training? \n\n".lines.map { |line| line.strip.center(100) }.join("\n")
@@ -31,18 +33,23 @@ puts "-----Available Classes-----\n
   Rogue: One who strikes from the shadows, skilled at stealth\n
   Wizard: A scholarly spellcaster, skilled with magic\n\n".lines.map { |line| line.strip.center(100) }.join("\n")
 
-@player.class_select
-@player.class_choice
-@player.base_stats
-@player.check_human
+$player.class_select
+$player.class_choice
+$player.base_stats
+$player.check_human
 
 
 puts "\nI guess I should have asked you this first, but what is your name?\n\n".lines.map { |line| line.strip.center(100) }.join("\n")
 
-@player_name = CharacterName.new
-@player_name.char_name
+$player_name = CharacterName.new
+$player_name.char_name
 
-confirm = Confirm_character.new(char_name: @player_name.get_name, char_class: @player.get_class, char_race: @player.get_race)
+confirm = ConfirmCharacter.new(char_name: $player_name.get_name, char_class: $player.get_class, char_race: $player.get_race)
 confirm.confirm_char
 
-@inventory = Inventory.new(char_class: @player.get_class)
+$inventory = Inventory.new(char_class: $player.get_class)
+$wealth = Wallet.new(char_class: $player.get_class)
+
+$lore = HomeTown.new(char_name: $player_name.get_name, char_class: $player.get_class, char_race: $player.get_race, wallet: $wealth, bag: $inventory, status: $player)
+
+$lore.town_square

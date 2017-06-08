@@ -2,7 +2,7 @@ class Character
 
   def race_select
     @races = ["Human", "Elf", "Dwarf", "Halfling"]
-    @char_race = gets.chomp.downcase.capitalize
+    @char_race = gets.chomp.strip.capitalize
     if @races.include?(@char_race)
       
     else
@@ -13,11 +13,12 @@ class Character
   end
     
   def race_choice
-    if @char_race == "Human"
+    case @char_race
+    when "Human"
       puts "\nI should have recognized you as such.\n\n"
-    elsif @char_race == "Elf"
+    when "Elf"
       puts "\nI guess the ears kind of gave it away huh.\n\n"
-    elsif @char_race == "Dwarf"
+    when "Dwarf"
       puts "\nI guess the beard gives it away eh?\n\n"
     else
       puts "\nOh good, I almost mistook you for a child.\n\n"
@@ -30,7 +31,7 @@ class Character
 
   def class_select
     classes = ["Warrior", "Rogue", "Wizard", "Cleric"]
-    @char_class = gets.chomp.downcase.capitalize
+    @char_class = gets.chomp.strip.downcase.capitalize
     if classes.include?(@char_class)
     
     else
@@ -40,11 +41,12 @@ class Character
   end
     
   def class_choice
-    if @char_class == "Warrior"
+    case @char_class 
+    when "Warrior"
       puts "\nYou certainly look tough.\n\n"
-    elsif @char_class == "Rogue"
+    when "Rogue"
       puts "\nThat would explain why I didn't hear you come in.\n\n"
-    elsif @char_class == "Wizard" 
+    when "Wizard" 
       puts "\nAh, I could tell you had a magical air about you.\n\n"
     else @char_class == "Cleric"
       puts "\nThat explains the holy raiments\n\n"
@@ -70,16 +72,17 @@ class Character
   def race_mod_human
     puts "As a human, what did you specialize in?"
     puts "pick a stat to increase by 2: (HP, STR, DEX, INT, or WIS)"
-    choice = gets.chomp.upcase
-      if choice == "HP"
+    choice = gets.chomp.strip.upcase
+      case choice
+      when "HP"
         @stats["HP"] += 2
-      elsif choice == "STR"
+      when "STR"
         @stats["STR"] += 2
-      elsif choice == "DEX"
+      when "DEX"
         @stats["DEX"] += 2
-      elsif choice == "INT"
+      when "INT"
         @stats["INT"] += 2
-      elsif choice == "WIS"
+      when "WIS"
         @stats["WIS"] += 2
       else
         puts "Please choose a valid stat."
@@ -89,15 +92,16 @@ class Character
   end
 
   def race_mod
-    if @char_race == "Elf"
+    case @char_race 
+    when "Elf"
       @stats["HP"] -= 2
       @stats["DEX"] += 2
       @stats["INT"] += 2
-    elsif @char_race == "Dwarf"
+    when "Dwarf"
       @stats["STR"] += 2
       @stats["DEX"] -= 2
       @stats["HP"] += 2
-    elsif @char_race == "Halfling"
+    when "Halfling"
       @stats["DEX"] += 2
       @stats["INT"] -= 2
       @stats["WIS"] += 2
@@ -112,7 +116,11 @@ class Character
     end
   end
 
-  def get_stats
+  def check_stats
     @stats.each {|stat, value| puts "#{stat}: #{value}" }
+  end
+
+  def get_stats
+    @stats
   end
 end
